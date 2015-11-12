@@ -143,3 +143,16 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         $prepare->bindValue(":senha", $senha);
         $prepare->execute();
     }
+    
+    function login($nome, $senha, $conexao){
+        $sql = "SELECT `idfuncionario`, `nome`, `email`, `senha` FROM `funcionario` WHERE `nome`=:nome and `senha`=:senha;";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":senha", $senha);
+        $prepare->execute();
+        
+        if($prepare->rowCount() == 1){
+            header("Location: produtos.php");
+            return;
+        }
+    }
