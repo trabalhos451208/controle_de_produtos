@@ -1,4 +1,13 @@
-<?php include_once("/globais/header.php"); ?>
+<?php 
+    include_once("/globais/header.php");
+    
+    if(
+        isset($_POST["nome"]) and
+        isset($_POST["senha"])
+    ){
+        login($_POST["nome"], $_POST["senha"], $conexao);
+    }
+?>
 
     <h1><center>SM Alimenticios</center></h1>
     
