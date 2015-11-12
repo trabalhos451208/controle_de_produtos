@@ -135,3 +135,11 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         <?php
         }
     }
+    function funcionario($nome, $email, $senha, $conexao){
+        $sql = "INSERT INTO `funcionario`(`nome`, `email`, `senha`) VALUES (:nome,:email,:senha);";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":email", $email);
+        $prepare->bindValue(":senha", $senha);
+        $prepare->execute();
+    }
