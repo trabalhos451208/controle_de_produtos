@@ -1,4 +1,4 @@
-<?php include_once("/globais/header.php"); ?>
+<?php include_once("../globais/header.php"); ?>
 
     <fieldset>
         <div class="lista">
@@ -10,17 +10,16 @@
                     <td>Quantidade</td>
                     <td>Data de Validade</td>
                     <td>Deletar</td>
-                    <td>Editar</td>
                 </tr>
                 <?php
                     
 //                    $busca = $_POST["busca"];
                     if(isset($_POST["busca"])){
-                        busca($_POST["busca"], $_POST["busca"], $conexao);
+                        busca_excluir($_POST["busca"], $_POST["busca"], $conexao);
                     }  
                 ?>
             </table>
         </div>
     </fieldset>
 
-<?php include_once ("/globais/footer.php"); ?>
+<?php include_once ("../globais/footer.php"); ?>

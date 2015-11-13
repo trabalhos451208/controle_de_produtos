@@ -1,4 +1,4 @@
-<?php include_once '/globais/global.php'; ?>
+<?php include_once '../globais/global.php'; ?>
 <html>
     <head>
         <meta charset="UTF-8" />

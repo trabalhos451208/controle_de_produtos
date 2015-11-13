@@ -1,5 +1,5 @@
 <?php 
-    include_once("/globais/header.php"); 
+    include_once("../globais/header.php"); 
 //    print_r($_POST);
     if(isset($_POST['id'])){
         $id = $_POST["id"];
@@ -25,12 +25,14 @@
                     <td>Valor</td>
                     <td>Quantidade</td>
                     <td>Data de Validade</td>
-                    <td>Deletar</td>
-                    <td>Editar</td>
                 </tr>
-                <?php mostrar($conexao); ?>
+                <?php mostrar_todos($conexao); ?>
             </table>
         </div>
     </fieldset>
 
-<?php include_once ("/globais/footer.php"); ?>
+    <form action="/todos/login.php">
+        <input type="submit" value="logar" class="button">
+    </form>
+
+<?php include_once ("../globais/footer.php"); ?>

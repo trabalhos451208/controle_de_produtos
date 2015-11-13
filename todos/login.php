@@ -1,5 +1,5 @@
 <?php 
-    include_once("/globais/header.php");
+    include_once("../globais/header.php");
     
     if(
         isset($_POST["nome"]) and
@@ -18,8 +18,11 @@
         <input type="submit" value="logar" class="tiny button">
     </form>
     
-    <form action="funcionario.php">
-        <input type="submit" value="novo funcionario" class="button">
+    <br/>
+    <br/>
+    <br/>
+    <form action="/todos/index.php">
+        <input type="submit" value="voltar" class="button">
     </form>
-
-<?php include_once ("/globais/footer.php"); ?>
+    
+<?php include_once ("../globais/footer.php"); ?>

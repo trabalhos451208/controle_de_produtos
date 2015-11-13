@@ -1,4 +1,4 @@
-<?php include_once("/globais/header.php"); ?>
+<?php include_once("../globais/header.php"); ?>
 
     <fieldset>
         <div class="lista">
@@ -29,4 +29,4 @@
     </form>
     
 
-<?php include_once ("/globais/footer.php"); ?>
+<?php include_once ("../globais/footer.php"); ?>

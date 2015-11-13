@@ -30,6 +30,9 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         $preparo->bindValue(":data", $data);
         $preparo->execute();
     }
+    
+    /**Mostram os itens**/
+    
     function mostrar($conexao){
         $sql = "SELECT * FROM `produto`;";
         $prepare = $conexao->prepare($sql);
@@ -53,6 +56,72 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
                     <form method="post" action="editar.php">
                         <input type="submit" class="tiny button" value="editar" id="editar" />
                         <input type="hidden" name="idp" value="<?php echo $linha["idproduto"]; ?>" />
+                    </form>
+                </td>
+            </tr>
+        <?php
+        }
+    }
+    
+    function mostrar_todos($conexao){
+        $sql = "SELECT * FROM `produto`;";
+        $prepare = $conexao->prepare($sql);
+        $prepare->execute();
+        
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+            </tr>
+        <?php
+        }
+    }
+    
+    function mostrar_editar($conexao){
+        $sql = "SELECT * FROM `produto`;";
+        $prepare = $conexao->prepare($sql);
+        $prepare->execute();
+        
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+                <td>
+                    <form method="post" action="editar.php">
+                        <input type="submit" class="tiny button" value="editar" id="editar" />
+                        <input type="hidden" name="idp" value="<?php echo $linha["idproduto"]; ?>" />
+                    </form>
+                </td>
+            </tr>
+        <?php
+        }
+    }
+    
+    function mostrar_excluir($conexao){
+        $sql = "SELECT * FROM `produto`;";
+        $prepare = $conexao->prepare($sql);
+        $prepare->execute();
+        
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+                <td>
+                    <form method="post">
+                        <input type="submit" class="tiny button" value="excluir" id="excluir" />
+                        <input type="hidden" name="id" value="<?php echo $linha["idproduto"]; ?>" />
                     </form>
                 </td>
             </tr>
@@ -135,6 +204,78 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         <?php
         }
     }
+    
+    function busca_editar($nome, $valor, $conexao){
+        $sql = "select * from produto where nome=:nome or valor=:valor";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":valor", $valor);
+        $prepare->execute();
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+                <td>
+                    <form method="post" action="editar.php">
+                        <input type="submit" class="tiny button" value="editar" id="editar" />
+                        <input type="hidden" name="idp" value="<?php echo $linha["idproduto"]; ?>" />
+                    </form>
+                </td>
+            </tr>
+        <?php
+        }
+    }
+    
+    function busca_excluir($nome, $valor, $conexao){
+        $sql = "select * from produto where nome=:nome or valor=:valor";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":valor", $valor);
+        $prepare->execute();
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+                <td>
+                    <form method="post">
+                        <input type="submit" class="tiny button" value="excluir" id="excluir" />
+                        <input type="hidden" name="id" value="<?php echo $linha["idproduto"]; ?>" />
+                    </form>
+                </td>
+            </tr>
+        <?php
+        }
+    }
+    
+    function busca_todos($nome, $valor, $conexao){
+        $sql = "select * from produto where nome=:nome or valor=:valor";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":valor", $valor);
+        $prepare->execute();
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+            <tr>
+                <td><?php echo $linha["idproduto"]; ?></td>
+                <td><?php echo $linha["nome"]; ?></td>
+                <td><?php echo $linha["valor"]; ?></td>
+                <td><?php echo $linha["quant"]; ?></td>
+                <td><?php echo $linha["data"]; ?></td>
+            </tr>
+        <?php
+        }
+    }
+    
+    /**Cadastro de funcionarios**/
+    
     function funcionario($nome, $email, $senha, $conexao){
         $sql = "INSERT INTO `funcionario`(`nome`, `email`, `senha`) VALUES (:nome,:email,:senha);";
         $prepare = $conexao->prepare($sql);
@@ -144,7 +285,41 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         $prepare->execute();
     }
     
+    function funcionario_editar($nome, $email, $senha, $conexao){
+        $sql = "INSERT INTO `funcionario_editar`(`nome`, `email`, `senha`) VALUES (:nome,:email,:senha);";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":email", $email);
+        $prepare->bindValue(":senha", $senha);
+        $prepare->execute();
+    }
+    
+    function funcionario_inserir($nome, $email, $senha, $conexao){
+        $sql = "INSERT INTO `funcionario_insert`(`nome`, `email`, `senha`) VALUES (:nome,:email,:senha);";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":email", $email);
+        $prepare->bindValue(":senha", $senha);
+        $prepare->execute();
+    }
+    
+    function funcionario_delete($nome, $email, $senha, $conexao){
+        $sql = "INSERT INTO `funcionario_delete`(`nome`, `email`, `senha`) VALUES (:nome,:email,:senha);";
+        $prepare = $conexao->prepare($sql);
+        $prepare->bindValue(":nome", $nome);
+        $prepare->bindValue(":email", $email);
+        $prepare->bindValue(":senha", $senha);
+        $prepare->execute();
+    }
+    
+    /**Fim do cadastro de funcionarios**/
+    
+    /**Login dos funcionarios**/
+    
     function login($nome, $senha, $conexao){
+        
+        /**Faz login do Funcionario chefe**/
+        
         $sql = "SELECT `idfuncionario`, `nome`, `email`, `senha` FROM `funcionario` WHERE `nome`=:nome and `senha`=:senha;";
         $prepare = $conexao->prepare($sql);
         $prepare->bindValue(":nome", $nome);
@@ -152,7 +327,50 @@ $conexao = new PDO("mysql:host={$host};dbname={$database}", $user, $password);
         $prepare->execute();
         
         if($prepare->rowCount() == 1){
-            header("Location: produtos.php");
+            header("Location: /funcionario_tudo/produtos.php");
+            return;
+        }
+        
+        /**Faz login do Funcionario_editar**/
+        
+        $sqle = "SELECT `idfuncionario_editar`, `nome`, `email`, `senha` FROM `funcionario_editar` WHERE `nome`=:nome and `senha`=:senha;";
+        $prepare_editar = $conexao->prepare($sqle);
+        $prepare_editar->bindValue(":nome", $nome);
+        $prepare_editar->bindValue(":senha", $senha);
+        $prepare_editar->execute();
+//        print_r($_POST);
+        if($prepare_editar->rowCount() == 1){
+            print_r($_POST);
+            header("Location: /funcionario_editar/produtos.php");
+            
+            return;
+        }
+        
+        /**Faz login do Funcionario_insert**/
+        
+        $sqli = "SELECT `idfuncionario_insert`, `nome`, `email`, `senha` FROM `funcionario_insert` WHERE `nome`=:nome and `senha`=:senha;";
+        $prepare_insert = $conexao->prepare($sqli);
+        $prepare_insert->bindValue(":nome", $nome);
+        $prepare_insert->bindValue(":senha", $senha);
+        $prepare_insert->execute();
+        
+        if($prepare_insert->rowCount() == 1){
+            header("Location: /funcionario_inserir/produtos.php");
+            return;
+        }
+        
+        /**Faz login do Funcionario_delete**/
+        
+        $sqld = "SELECT `idfuncionario_delete`, `nome`, `email`, `senha` FROM `funcionario_delete` WHERE `nome`=:nome and `senha`=:senha;";
+        $prepare_delete = $conexao->prepare($sqld);
+        $prepare_delete->bindValue(":nome", $nome);
+        $prepare_delete->bindValue(":senha", $senha);
+        $prepare_delete->execute();
+        
+        if($prepare_delete->rowCount() == 1){
+            header("Location: /funcionario_excluir/produtos.php");
             return;
         }
     }
+    
+    /**Fim do login dos funcionarios**/

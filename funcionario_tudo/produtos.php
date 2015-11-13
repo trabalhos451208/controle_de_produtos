@@ -1,5 +1,5 @@
 <?php 
-    include_once("/globais/header.php"); 
+    include_once("../globais/header.php"); 
 //    print_r($_POST);
     if(isset($_POST['id'])){
         $id = $_POST["id"];
@@ -32,5 +32,20 @@
             </table>
         </div>
     </fieldset>
+    
+    <table>
+        <tr>
+            <td>
+                <form action="/funcionario_tudo/cadastro.php">
+                    <input type="submit" value="cadastrar produto" class="button">
+                </form>
+            </td>
+            <td>
+                <form action="/todos/index.php">
+                    <input type="submit" value="sair" class="button">
+                </form>
+            </td>
+        </tr>
+    </table>
 
-<?php include_once ("/globais/footer.php"); ?>
+<?php include_once ("../globais/footer.php"); ?>
