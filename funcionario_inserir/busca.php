@@ -21,4 +21,8 @@
         </div>
     </fieldset>
 
+    <form action="/funcionario_inserir/produtos.php">
+        <input type="submit" value="voltar" class="button">
+    </form>
+
 <?php include_once ("../globais/footer.php"); ?>
